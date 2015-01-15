@@ -16,7 +16,6 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
-gem 'rails_12factor'
 
 group :development do
   gem 'quiet_assets'
@@ -43,5 +42,6 @@ end
 
 group :production do
   gem 'pg'
+  gem 'rails_12factor'
 end
 

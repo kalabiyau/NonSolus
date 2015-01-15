@@ -9,6 +9,11 @@ describe 'Main Page Feature' do
       expect(page).to have_content('Hello!')
     end
 
+    it  'shows text Fellow Rubyist!' do
+      visit '/'
+      expect(page).to have_content('Fellow Rubyist!')
+    end
+
   end
 
 end
