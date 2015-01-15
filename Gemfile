@@ -35,7 +35,7 @@ end
 group :test do
   gem 'shoulda'
   gem 'rspec-rails'
-  gem 'simplecov', require: false
+  gem 'simplecov', '~> 0.9', require: false
   gem 'capybara'
   gem 'poltergeist', require: false
   gem 'database_cleaner'
