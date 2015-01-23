@@ -7,7 +7,6 @@ describe  UsersController do
 
   describe 'show' do
      it 'responds successfully with a user object'
-
   end
 
   describe 'index' do
