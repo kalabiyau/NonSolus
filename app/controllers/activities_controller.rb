@@ -1,9 +1,5 @@
 class ActivitiesController < ApplicationController
 
-  def empty 
-
-  end
-
   def new
 
   end
@@ -21,4 +17,3 @@ class ActivitiesController < ApplicationController
   end
 
 end
-
