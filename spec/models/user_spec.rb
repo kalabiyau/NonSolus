@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'user' do
+describe User do
 
   subject { create(:user) }
 
@@ -22,5 +22,7 @@ describe 'user' do
     end
 
   end
+
+  it { should have_and_belong_to_many(:activities) }
 
 end
