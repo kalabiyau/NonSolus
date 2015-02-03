@@ -12,7 +12,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20150202154317) do
->>>>>>> add associations, migrations, and tests #24
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
