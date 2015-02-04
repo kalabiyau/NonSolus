@@ -1,0 +1,12 @@
+.row
+  .col-md-9
+  .col-md-3
+    - if current_user
+      = current_user.full_name
+      = link_to saml_logout_url do
+        button type='button' class='btn btn-success' Logout
+    - else
+      = link_to saml_init_url do
+        button type='button' class='btn btn-success' Login
+
+

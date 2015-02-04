@@ -4,4 +4,10 @@ Rails.application.routes.draw do
 
   resources :activities
 
+  namespace :saml do
+    get :init
+    post :consume
+    get :logout
+  end
+
 end
