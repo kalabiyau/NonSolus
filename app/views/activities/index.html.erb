@@ -1,0 +1,8 @@
+<h1>Servus</h1>
+
+<%- @activities.each do |a| %>
+    <ul data-columns="2" >
+      <li><%= a.name %></li>
+      <li><%= link_to 'destroy', activity_path(a), method: :delete %></li>
+    </ul>
+<% end %>
