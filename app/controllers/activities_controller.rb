@@ -1,5 +1,6 @@
 class ActivitiesController < ApplicationController
 
+  respond_to :html
   def index
     @activities = Activity.all
   end
@@ -10,14 +11,8 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = Activity.new(activity_params)
-
-    respond_to do |format|
-      if @activity.save
-        format.html { redirect_to @activity, notice: 'Activity was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @activity }
-      else
-        format.html { render action: 'new' }
-      end
+    flash[:success] = 'Successfully created Activity' if @activity.save
+    respond_with(@activity)
     end
   end
 
@@ -34,5 +29,3 @@ class ActivitiesController < ApplicationController
   def activity_params
     params.require(:activity).permit(:name)
   end
-
-end
