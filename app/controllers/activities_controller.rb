@@ -1,6 +1,7 @@
 class ActivitiesController < ApplicationController
 
   respond_to :html
+
   def index
     @activities = Activity.all
   end
@@ -13,11 +14,11 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new(activity_params)
     flash[:success] = 'Successfully created Activity' if @activity.save
     respond_with(@activity)
-    end
   end
 
   def show
     @activity = Activity.find(params[:id])
+    respond_with(@activity)
   end
 
   def destroy
