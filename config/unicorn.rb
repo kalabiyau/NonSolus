@@ -4,9 +4,9 @@ preload_app true
 
 root_folder = '/home/ns/nonsolusapp'
 
-pid = File.join root_folder, 'shared/pids/unicorn.pid'
+pid = File.join root_folder, 'shared/tmp/pids/unicorn.pid'
 old_pid = pid + '.oldbin'
-listen File.join root_folder, 'shared/sockets/unicorn.sock'
+listen File.join root_folder, 'shared/tmp/sockets/unicorn.sock'
 stderr_path File.join root_folder, 'shared/log/unicorn.log'
 stdout_path File.join root_folder, 'shared/log/unicorn.log'
 
