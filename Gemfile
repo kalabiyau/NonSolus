@@ -24,6 +24,8 @@ gem 'draper'
 
 group :development do
   gem 'quiet_assets'
+  gem 'mina'
+  gem 'mina-unicorn', require: false
 end
 
 group :development, :test do
@@ -49,6 +51,6 @@ end
 
 group :production do
   gem 'pg'
-  gem 'rails_12factor'
+  gem 'unicorn'
 end
 
