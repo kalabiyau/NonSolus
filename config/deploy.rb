@@ -10,7 +10,7 @@ set :deploy_to, '/home/ns/nonsolusapp'
 set :repository, 'https://github.com/kalabiyau/NonSolus.git'
 set :branch, 'master'
 
-set :shared_paths, ['config/database.yml', 'log', 'tmp/pids', 'tmp/sockets']
+set :shared_paths, ['config/database.yml', 'log', 'tmp/pids', 'tmp/sockets', 'config/secrets.yml']
 
 task :environment do
   invoke :'rvm:use[ruby-2.1.5@default]'

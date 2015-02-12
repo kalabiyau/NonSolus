@@ -3,10 +3,12 @@ timeout 600
 preload_app true
 
 root_folder = '/home/ns/nonsolusapp'
+working_directory File.join('/home/ns/nonsolusapp', 'current')
 
-pid = File.join root_folder, 'shared/tmp/pids/unicorn.pid'
-old_pid = pid + '.oldbin'
-listen File.join root_folder, 'shared/tmp/sockets/unicorn.sock'
+pid_file = File.join root_folder, 'shared/tmp/pids/unicorn.pid'
+old_pid = pid_file + '.oldbin'
+pid pid_file
+listen File.join(root_folder, 'shared/tmp/sockets/unicorn.sock'), backlog: 2048
 stderr_path File.join root_folder, 'shared/log/unicorn.log'
 stdout_path File.join root_folder, 'shared/log/unicorn.log'
 
@@ -16,6 +18,8 @@ before_exec do |_server|
   ENV['BUNDLE_GEMFILE'] = File.join root_folder, 'current/Gemfile'
 end
 
+run_once = true
+
 before_fork do |server, _worker|
 
   Signal.trap 'TERM' do
@@ -24,7 +28,6 @@ before_fork do |server, _worker|
   end
 
   defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
-
   if File.exist?(old_pid) && server.pid != old_pid
     begin
       Process.kill('QUIT', File.read(old_pid).to_i)
@@ -42,3 +45,4 @@ after_fork do |_server, _worker|
 
   defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
 end
+
