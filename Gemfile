@@ -21,6 +21,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'ruby-saml', '~> 0.9'
 gem 'draper'
+gem 'responders'
 
 group :development do
   gem 'quiet_assets'

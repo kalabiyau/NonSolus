@@ -1,0 +1,9 @@
+= form_for @activity do |f|
+  == render 'shared/error_messages', target: @activity
+  fieldset
+  .field
+    = f.label :name
+    = f.text_field :name  ,:placeholder => "Activity name .." , :autofocus => ''
+
+    div align="left"
+      .actions = f.submit 'Save'
