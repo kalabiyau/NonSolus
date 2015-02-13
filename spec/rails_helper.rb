@@ -6,6 +6,7 @@ require 'capybara/poltergeist'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'database_cleaner'
+require 'shoulda/matchers'
 
 # Schema and seeds handling
 ActiveRecord::Schema.verbose = false
