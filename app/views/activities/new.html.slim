@@ -1,11 +1,7 @@
 
 = form_for @activity do |f|
   fieldset
-    - if @activity.errors.any?
-        h2 = "#{pluralize(@activity.errors.count, "error")} prohibited this moon from being saved:"
-        ul
-          - @activity.errors.full_messages.each do |message|
-            li = message
+  == render 'shared/error_messages', target: @activity
   .field
     = f.label :name
     = f.text_field :name  ,:placeholder => "Activity name .." , :autofocus => ''
