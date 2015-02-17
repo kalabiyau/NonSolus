@@ -1,8 +1,10 @@
 h1 Servus
 - @activities.each do |a|
-  ul
+  ul data-columns="2"
     li
       = a.name
+    li
+      = link_to 'destroy', activity_path(a), method: :delete
 
 
 = link_to 'New', new_activity_path
