@@ -4,15 +4,9 @@ describe User do
 
   subject { create(:user) }
 
-  it 'validates presence of first_name' do
-    user = build(:user, first_name: nil)
-    user.should_not be_valid
-  end
+  it { should validate_presence_of(:first_name) }
 
-  it 'validates presence of last_name' do
-    user = build(:user, last_name: nil)
-    user.should_not be_valid
-  end
+  it { should validate_presence_of(:last_name) }
 
   describe '.find_or_create_for_saml' do
 
