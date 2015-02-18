@@ -1,10 +1,13 @@
-h1 Servus
-- @activities.each do |a|
-  ul data-columns="2"
-    li
-      = a.name
-    li
-      = link_to 'destroy', activity_path(a), method: :delete
+.row
+  .col-md-12
+    h1 Servus
+    ul
+      - @activities.each do |a|
+        li.activity
+          .name
+            = a.name
+          span.actions
+            = link_to 'destroy', activity_path(a), method: :delete
 
 
-= link_to 'New', new_activity_path
+    = link_to 'New', new_activity_path
