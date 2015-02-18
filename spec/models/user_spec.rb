@@ -5,7 +5,6 @@ describe User do
   subject { create(:user) }
 
   it { should validate_presence_of(:first_name) }
-
   it { should validate_presence_of(:last_name) }
 
   describe '.find_or_create_for_saml' do
