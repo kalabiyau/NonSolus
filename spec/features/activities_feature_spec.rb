@@ -14,6 +14,6 @@ describe 'index page' do
     visit activities_url
     expect(page).to have_content('drink coffee')
     click_link 'destroy'
-    page.should have_no_content('drink coffee')
+    expect(page).to have_no_content('drink coffee')
   end
 end
