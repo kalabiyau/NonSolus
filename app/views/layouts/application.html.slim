@@ -10,4 +10,6 @@ html
   body
     .container
       = render 'header'
+      - flash.each do |name, msg|
+        = content_tag :div, msg, class: name
       = yield
