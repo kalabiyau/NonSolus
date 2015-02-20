@@ -48,6 +48,8 @@ group :test do
   gem 'capybara'
   gem 'poltergeist', require: false
   gem 'database_cleaner'
+  gem 'rack_session_access'
+  gem 'launchy'
 end
 
 group :production do

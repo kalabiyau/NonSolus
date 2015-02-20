@@ -7,6 +7,7 @@ require 'capybara/rails'
 require 'capybara/rspec'
 require 'database_cleaner'
 require 'shoulda/matchers'
+require 'rack_session_access/capybara'
 
 # Schema and seeds handling
 ActiveRecord::Schema.verbose = false
@@ -41,6 +42,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
   config.include FactoryGirl::Syntax::Methods
+  config.include FeatureHelpers, type: :feature
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
