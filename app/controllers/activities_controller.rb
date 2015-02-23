@@ -26,6 +26,17 @@ class ActivitiesController < ApplicationController
     redirect_to(activities_url)
   end
 
+  def join
+    unless @current_user
+      flash[:alert] = 'You need to be logged in to join an activity!'
+      redirect_to :back and return
+    end
+    @activity = Activity.find(params[:id])
+    @current_user.activities << @activity
+    flash[:notice] = 'You joined the activity'
+    redirect_to activities_url
+  end
+
   private
 
   def activity_params

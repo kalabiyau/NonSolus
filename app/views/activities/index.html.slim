@@ -7,7 +7,9 @@
           .name
             = a.name
           span.actions
-            = link_to 'destroy', activity_path(a), method: :delete
-
+            .destroy
+              = link_to 'destroy', activity_path(a), method: :delete
+            .join
+              = link_to 'join', join_activity_url(a.id), method: :post
 
     = link_to 'New', new_activity_path
