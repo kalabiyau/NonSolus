@@ -8,8 +8,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users
-
   namespace :saml do
     get :init
     post :consume
