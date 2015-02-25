@@ -1,0 +1,9 @@
+= form_for @user do |f|
+  fieldset
+  == render 'shared/error_messages', target: @user
+  .field
+    = f.label :Receive_Mails_for_new_Activites
+    = f.check_box :subscriber
+
+    div align="left"
+      .actions = f.submit 'Save'
