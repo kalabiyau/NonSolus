@@ -45,8 +45,8 @@ class SamlController < ApplicationController
   def saml_settings
     settings = OneLogin::RubySaml::Settings.new
     settings.assertion_consumer_service_url = saml_consume_url
-    settings.issuer = 'scc.suse.com'
-    settings.idp_sso_target_url = 'https://login.attachmategroup.com/nidp/saml2/sso'
+    settings.issuer = 'act.suse.de'
+    settings.idp_sso_target_url = 'https://login.innerweb.novell.com/nidp/saml2/sso'
     settings.idp_cert_fingerprint = '80:b8:c8:ef:e0:c3:67:6e:d5:5f:6a:fb:ef:ad:f7:a3:60:9d:65:af'
     settings.authn_context_decl_ref = 'suse/name/password/uri'
     settings

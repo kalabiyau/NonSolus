@@ -22,11 +22,13 @@ gem 'turbolinks'
 gem 'ruby-saml', '~> 0.9'
 gem 'draper'
 gem 'responders'
+gem 'sidekiq'
 
 group :development do
   gem 'quiet_assets'
   gem 'mina'
   gem 'mina-unicorn', require: false
+  gem 'mina-sidekiq', require: false
 end
 
 group :development, :test do

@@ -3,6 +3,7 @@ require 'mina/rails'
 require 'mina/git'
 require 'mina/rvm'
 require 'mina/unicorn'
+require 'mina_sidekiq/tasks'
 
 set :domain, 'act.suse.de'
 set :user, 'ns'
@@ -38,6 +39,7 @@ task :deploy => :environment do
   deploy do
     # Put things that will set up an empty directory into a fully set-up
     # instance of your project.
+    invoke :'sidekiq:quiet'
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
@@ -46,6 +48,7 @@ task :deploy => :environment do
     invoke :'deploy:cleanup'
 
     to :launch do
+      invoke :'sidekiq:restart'
       invoke :'unicorn:restart'
     end
   end
