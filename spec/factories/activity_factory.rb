@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :activity do
-    sequence(:name) { Faker::Lorem.word  }
+    sequence(:name) { Faker::Movie.title }
   end
 
 end

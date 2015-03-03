@@ -23,6 +23,7 @@ gem 'ruby-saml', '~> 0.9'
 gem 'draper'
 gem 'responders'
 gem 'sidekiq'
+gem 'whenever'
 
 group :development do
   gem 'quiet_assets'
@@ -41,6 +42,9 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   gem 'pry-rails'
+  gem 'letter_opener'
+  gem 'launchy'
+  gem 'awesome_print'
 end
 
 group :test do
@@ -51,7 +55,6 @@ group :test do
   gem 'poltergeist', require: false
   gem 'database_cleaner'
   gem 'rack_session_access'
-  gem 'launchy'
 end
 
 group :production do

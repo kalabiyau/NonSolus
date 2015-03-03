@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204110615) do
+ActiveRecord::Schema.define(version: 20150222150701) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -25,11 +25,12 @@ ActiveRecord::Schema.define(version: 20150204110615) do
   add_index "activities_users", ["user_id", "activity_id"], name: "index_activities_users_on_user_id_and_activity_id"
 
   create_table "users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "novell_username"
-    t.string "webid"
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "email"
+    t.string  "novell_username"
+    t.string  "webid"
+    t.boolean "subscriber",      default: false
   end
 
 end

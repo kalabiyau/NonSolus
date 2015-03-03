@@ -1,0 +1,4 @@
+ul
+- @recent_activities.each do |activity|
+  li = link_to activity.name, activity_url(activity)
+
