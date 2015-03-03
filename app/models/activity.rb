@@ -7,5 +7,8 @@ class Activity < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: true
 
+  scope :name_like, lambda{|l|  where('name LIKE :l', l: "%#{l}%")}
+  default_scope { order(id: :desc) }
+
 end
 
