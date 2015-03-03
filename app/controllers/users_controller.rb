@@ -1,19 +1,12 @@
 class UsersController < ApplicationController
 
   def index
-
+    @users = User.all
   end
 
   def show
-
-  end
-
-  def new
-
-  end
-
-  def destroy
-
+    @users = User.find(params[:id])
+    redirect_to(users_url)
   end
 
 end

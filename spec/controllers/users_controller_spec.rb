@@ -1,19 +1,21 @@
 require 'rails_helper'
 
 describe  UsersController do
-  describe 'create' do
-    it 'assigns @user variable with User instance being built from params'
+
+  describe 'index' do
+    it 'responds successfully with an index of users' do
+      create(:user)
+      users = User.all
+      get :index
+      expect(assigns(:users)).to eq(users)
+    end
   end
 
   describe 'show' do
-     it 'responds successfully with a user object'
+     it 'responds successfully with an user object' do
+      user = create(:user)
+      get :show, id: user.id
+     end
   end
 
-  describe 'index' do
-     it 'responds successfully with an index'
-  end
-
-  describe 'destroy' do
-    it 'destroys @user'
-  end
 end
