@@ -6,6 +6,7 @@ class Activity < ActiveRecord::Base
   has_one :creator, class_name: User
   validates :name, presence: true
   validates :name, uniqueness: true
+  validates :description, presence: true
 
   scope :name_like, lambda{|l|  where('name LIKE :l', l: "%#{l}%")}
   default_scope { order(id: :desc) }
