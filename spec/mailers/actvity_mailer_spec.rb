@@ -9,7 +9,7 @@ describe ActivitiesMailer do
     subject { described_class.new_activities_digest(user) }
 
     it 'sets default from' do
-      expect(subject.from).to eq ['act@suse.de']
+      expect(subject.from).to eq ['act@act.suse.de']
     end
 
     it 'sets users email as a receiver' do
