@@ -31,9 +31,12 @@ describe 'activities index page' do
     scenario 'create new Activity' do
       visit new_activity_path
       expect(page).to have_content('Name')
+      expect(page).to have_content('Description')
       fill_in 'Name', with: 'TestActivity'
+      fill_in 'Description', with: 'test description to test activity description'
       click_button 'Save'
       expect(page).to have_content('TestActivity')
+      expect(page).to have_content('test description to test activity description')
     end
   end
 
