@@ -14,7 +14,9 @@
 ActiveRecord::Schema.define(version: 20150303160507) do
 
   create_table "activities", force: :cascade do |t|
-    t.string "name"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "activities", ["name"], name: "index_activities_on_name"
