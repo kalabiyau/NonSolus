@@ -24,6 +24,7 @@ gem 'draper'
 gem 'responders'
 gem 'sidekiq'
 gem 'whenever'
+gem 'versionist'
 
 group :development do
   gem 'quiet_assets'
