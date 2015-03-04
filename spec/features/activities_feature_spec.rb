@@ -22,7 +22,7 @@ describe 'activities index page' do
       Activity.create(name: 'drink coffee')
       visit activities_url
       expect(page).to have_content('drink coffee')
-      click_link 'destroy'
+      click_link 'Destroy'
       expect(page).to have_no_content('drink coffee')
     end
   end
@@ -41,13 +41,13 @@ describe 'activities index page' do
     scenario 'should present a link which allows users to join an activity' do
       Activity.create(name: 'swim')
       visit activities_url
-      expect(page).to have_link('join')
+      expect(page).to have_link('Join')
     end
 
     scenario 'should raise an error if user wants to join an activity and is not logged in' do
       Activity.create(name: 'swim')
       visit activities_url
-      click_link 'join'
+      click_link 'Join'
       expect(page).to have_content('You need to be logged in to join an activity!')
     end
 
@@ -57,7 +57,7 @@ describe 'activities index page' do
       user.activities << activity
       logged_as(user)
       visit activities_url
-      click_link 'join'
+      click_link 'Join'
       expect(page).to have_content('You joined the activity')
     end
   end

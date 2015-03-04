@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
 
-  respond_to :html
+  respond_to :html, :js
 
   def index
     @activities = Activity.all
@@ -18,6 +18,7 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
+    respond_with(@activity)
   end
 
   def destroy

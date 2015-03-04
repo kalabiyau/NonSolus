@@ -1,15 +1,7 @@
 .row
-  .col-md-12
-    h1 Servus
-    ul
-      - @activities.each do |a|
-        li.activity
-          .name
-            = a.name
-          span.actions
-            .destroy
-              = link_to 'destroy', activity_path(a), method: :delete
-            .join
-              = link_to 'join', join_activity_url(a.id), method: :post
-
-    = link_to 'New', new_activity_path
+  = link_to 'New', new_activity_path
+.row
+  - @activities.each do |a|
+    = render a, locals: {a: a}
+.row
+  = link_to 'New', new_activity_path
