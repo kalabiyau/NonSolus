@@ -13,14 +13,7 @@ class ActivitiesController < ApplicationController
   def create
     @activity = Activity.new(activity_params)
     flash[:success] = 'Successfully created Activity' if @activity.save
-    send_mail
     respond_with(@activity)
-  end
-
-  def send_mail
-    User.where(subscriber: true).each do |user|
-      Notifier.notification(user.email).deliver_now
-    end
   end
 
   def show

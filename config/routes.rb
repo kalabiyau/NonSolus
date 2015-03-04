@@ -4,13 +4,7 @@ Rails.application.routes.draw do
 
   resources :activities
 
-  resources :users do
-    member do
-      post :update
-      get :show
-      post :update
-    end
-  end
+  resources :users, only: [:update, :show]
 
   namespace :saml do
     get :init
