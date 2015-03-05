@@ -1,13 +1,20 @@
-= form_for @activity do |f|
-  fieldset
-    = render 'shared/error_messages', target: @activity
-    .field
-      = f.label :name
-      = f.text_field :name  ,:placeholder => "Activity name .."
-    .field
-      = f.label :description
-      = f.text_area :description, :placeholder => "Describe your Activity..."
-
-
-      div align="left"
-        .actions = f.submit 'Save'
+.row
+  .col-md-12
+    = form_for @activity,  html: { class: 'form-horizontal' } do |f|
+      = render 'shared/error_messages', target: @activity
+      .form-group
+        = f.label :name, class: 'col-md-2 control-label'
+        .col-md-4
+          = f.text_field :name, placeholder: 'Activity name ...', class: 'form-control'
+      .form-group
+        = f.label :description, class: 'col-md-2 control-label'
+        .col-md-4
+          = f.text_area :description, placeholder: 'Describe your Activity...', class: 'form-control'
+      .form-group
+        = f.label :category, class: 'col-md-2 control-label'
+        .col-md-4
+          = f.collection_select :category_id, Category.all, :id, :name, {}, class: 'form-control'
+      .form-group
+        .col-md-offset-2.col-md-10
+          .actions
+            = f.submit 'Save', class: 'btn btn-default'

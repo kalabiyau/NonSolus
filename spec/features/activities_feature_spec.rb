@@ -34,6 +34,7 @@ describe 'activities index page' do
       expect(page).to have_content('Description')
       fill_in 'Name', with: 'TestActivity'
       fill_in 'Description', with: 'test description to test activity description'
+      select 'Other', from: 'activity_category_id'
       click_button 'Save'
       expect(page).to have_content('TestActivity')
       expect(page).to have_content('test description to test activity description')

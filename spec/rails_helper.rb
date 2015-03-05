@@ -50,6 +50,7 @@ RSpec.configure do |config|
     DatabaseCleaner.cleaning do
       FactoryGirl.lint
     end
+    load Rails.root.join 'db', 'seeds.rb'
   end
 
   config.before(:each, js: true) do

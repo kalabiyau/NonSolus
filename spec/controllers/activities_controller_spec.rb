@@ -21,7 +21,7 @@ describe ActivitiesController do
 
   describe 'create' do
     it 'assigns @activity variable with Activity instance being built from params' do
-      post :create, activity: FactoryGirl.attributes_for(:activity)
+      post :create, activity: FactoryGirl.attributes_for(:activity).merge(category_id: 1)
       expect(flash[:success]).to eq("Successfully created Activity")
       expect(response).to redirect_to Activity.last
     end
