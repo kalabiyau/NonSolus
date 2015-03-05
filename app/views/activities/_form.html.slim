@@ -1,9 +1,13 @@
 = form_for @activity do |f|
   fieldset
-  = render 'shared/error_messages', target: @activity
-  .field
-    = f.label :name
-    = f.text_field :name  ,:placeholder => "Activity name .." , :autofocus => ''
+    = render 'shared/error_messages', target: @activity
+    .field
+      = f.label :name
+      = f.text_field :name  ,:placeholder => "Activity name .."
+    .field
+      = f.label :description
+      = f.text_area :description, :placeholder => "Describe your Activity..."
 
-    div align="left"
-      .actions = f.submit 'Save'
+
+      div align="left"
+        .actions = f.submit 'Save'
