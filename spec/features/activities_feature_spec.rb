@@ -4,8 +4,8 @@ describe 'activities index page' do
 
   feature 'list activities' do
     scenario 'shows activities in an unsorted list' do
-      Activity.create(name: 'drink coffee')
-      Activity.create(name: 'stay @home')
+      create(:activity, name: 'drink coffee')
+      create(:activity, name: 'stay @home')
       visit activities_url
       expect(page).to have_content('drink coffee')
       expect(page).to have_content('stay @home')
@@ -19,7 +19,7 @@ describe 'activities index page' do
 
   feature 'delete activity' do
     scenario 'each activity has a link which deletes activity and redirects back to index page' do
-      Activity.create(name: 'drink coffee')
+      create(:activity, name: 'drink coffee')
       visit activities_url
       expect(page).to have_content('drink coffee')
       click_link 'Destroy'
@@ -42,13 +42,13 @@ describe 'activities index page' do
 
   feature 'join activity' do
     scenario 'should present a link which allows users to join an activity' do
-      Activity.create(name: 'swim')
+      create(:activity)
       visit activities_url
       expect(page).to have_link('Join')
     end
 
     scenario 'should raise an error if user wants to join an activity and is not logged in' do
-      Activity.create(name: 'swim')
+      create(:activity)
       visit activities_url
       click_link 'Join'
       expect(page).to have_content('You need to be logged in to join an activity!')
@@ -56,7 +56,7 @@ describe 'activities index page' do
 
     scenario 'should present a notice that user subscribed successfully to an activity' do
       user = create(:user)
-      activity = Activity.create(name: 'swim')
+      activity = create(:activity)
       user.activities << activity
       logged_as(user)
       visit activities_url
