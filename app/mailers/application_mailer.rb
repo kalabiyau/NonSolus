@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'act@act.suse.de'
+  default from: '"SUSE Activities" <act@act.suse.de>'
   layout 'mailer'
 
   def generate_verp_pattern
