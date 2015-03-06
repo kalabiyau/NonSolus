@@ -6,6 +6,8 @@ class Activity < ActiveRecord::Base
   has_one :creator, class_name: User
   belongs_to :category
 
+  delegate :color, to: :category, allow_nil: true
+
   validates :name, presence: true
   validates :name, uniqueness: true
   validates :description, presence: true

@@ -1,15 +1,17 @@
 .activity
   .activity_box.col-md-4
-    .name
-      = activity.name
-
-    .description
-      = activity.description
-
+    .category_plane style="background-color: ##{activity.color}"
+      .icon_holder
+        span class='glyphicon glyphicon-question-sign'
+    .details_plane
+      .name
+        = activity.name
+      .description
+        = activity.description.truncate(60)
     .actions
+      span
+        = link_to 'Show', activity_url(activity)
       span.destroy
-        = link_to 'Show', activity_path(activity)
-      span.destroy
-        = link_to 'Destroy', activity_path(activity), method: :delete
+        = link_to 'Destroy', activity_url(activity), method: :delete
       span.join
         = link_to 'Join', join_activity_url(activity), method: :post
