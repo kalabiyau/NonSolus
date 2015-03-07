@@ -43,7 +43,16 @@ class ActivitiesController < ApplicationController
     redirect_to activities_url
   end
 
+  def search
+    @activities = Activity.includes(:category, :creator).name_like(search_params[:q])
+    render @activities
+  end
+
   private
+
+  def search_params
+    params.permit(:q)
+  end
 
   def activity_params
     params.require(:activity).permit(:name, :description, :category_id)

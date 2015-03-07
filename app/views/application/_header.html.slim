@@ -1,12 +1,19 @@
-.row
-  .col-md-9
-  .col-md-3
-    - if current_user
-      = current_user.full_name
-      = link_to saml_logout_url do
-        button type='button' class='btn btn-success' Logout
-    - else
-      = link_to saml_init_url do
-        button type='button' class='btn btn-success' Login
+header
+  .row
+    .col-md-1
+      = link_to root_url do
+        i.home_icon.fa.fa-home
+    .col-md-4
+      form
+        .form-group
+          input class='form-control' id='activity_search' placeholder='Search by activity name...'
+    .col-md-3.col-md-offset-3
+      - if current_user
+        = current_user.full_name
+        = link_to saml_logout_url do
+          button type='button' class='btn btn-success' Logout
+      - else
+        = link_to saml_init_url do
+          button type='button' class='btn btn-success' Login
 
 

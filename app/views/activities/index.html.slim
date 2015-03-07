@@ -1,6 +1,6 @@
 .row
   = link_to 'New', new_activity_path
-.row
+.row#activities
   - @activities.each do |a|
     = render a, locals: {a: a}
 .row

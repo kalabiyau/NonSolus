@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :current_user
 
-  def index; end
+  def about; end
 
   protected
 
