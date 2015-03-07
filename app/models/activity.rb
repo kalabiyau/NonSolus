@@ -7,6 +7,7 @@ class Activity < ActiveRecord::Base
   belongs_to :category
 
   delegate :color, to: :category, allow_nil: true
+  delegate :icon, to: :category, allow_nil: true
 
   validates :name, presence: true
   validates :name, uniqueness: true
