@@ -3,7 +3,7 @@ class ActivitiesController < ApplicationController
   respond_to :html, :js
 
   def index
-    @activities = Activity.all
+    @activities = Activity.includes(:category, :creator).all
   end
 
   def new
