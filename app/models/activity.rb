@@ -12,7 +12,7 @@ class Activity < ActiveRecord::Base
   validates :creator, :name, :description, :category, presence: true
   validates :name, uniqueness: true
 
-  scope :name_like, lambda{|l|  where('name LIKE :l', l: "%#{l}%")}
+  scope :name_like, lambda{|l|  where('lower(name) LIKE :l', l: "%#{l}%")}
   default_scope { order(id: :desc) }
 
 end
