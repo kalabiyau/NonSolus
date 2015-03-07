@@ -13,11 +13,11 @@ class SamlController < ApplicationController
     response.settings = saml_settings
 
     if response.is_valid?
-      user = User.find_or_create_for_saml({ novell_username: response.name_id.downcase,
+      user = User.find_or_create_for_saml({ username: response.name_id.downcase,
                                             email: saml_attribute(response, 'mail').downcase,
                                             first_name: saml_attribute(response, 'givenName'),
                                             last_name: saml_attribute(response, 'sn'),
-                                            webid: saml_attribute(response, 'webidSynchID') })
+                                            workforceid: saml_attribute(response, 'workforceID') })
       sign_in_and_redirect(user) and return
     else
       response.validate!
@@ -46,9 +46,8 @@ class SamlController < ApplicationController
     settings = OneLogin::RubySaml::Settings.new
     settings.assertion_consumer_service_url = saml_consume_url
     settings.issuer = 'act.suse.de'
-    settings.idp_sso_target_url = 'https://login.innerweb.novell.com/nidp/saml2/sso'
-    settings.idp_cert_fingerprint = '80:b8:c8:ef:e0:c3:67:6e:d5:5f:6a:fb:ef:ad:f7:a3:60:9d:65:af'
-    settings.authn_context_decl_ref = 'suse/name/password/uri'
+    settings.idp_sso_target_url = 'https://login.innerwebstage.novell.com/nidp/saml2/sso'
+    settings.idp_cert_fingerprint = 'd8:9d:8b:34:b5:76:c3:c8:06:b8:7c:1f:d8:73:e6:fb:07:fe:2a:38'
     settings
   end
 end
