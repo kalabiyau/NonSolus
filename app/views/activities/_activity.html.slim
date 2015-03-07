@@ -3,6 +3,8 @@
     .category_plane style="background-color: ##{activity.color}"
       .icon_holder
         span class="fa #{activity.icon}"
+      .avatar
+        = image_tag(activity.creator.decorate.gravatar_url)
     .details_plane
       .name
         = activity.name

@@ -28,7 +28,11 @@ describe 'activities index page' do
   end
 
   feature 'create activity' do
+
+    let(:user) { create(:user) }
+
     scenario 'create new Activity' do
+      logged_as(user)
       visit new_activity_path
       expect(page).to have_content('Name')
       expect(page).to have_content('Description')

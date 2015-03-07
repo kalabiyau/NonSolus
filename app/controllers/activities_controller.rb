@@ -12,6 +12,11 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = Activity.new(activity_params)
+    unless @current_user
+      flash[:alert] = 'You need to be logged in to create an activity!'
+      render :new and return
+    end
+    @activity.creator = @current_user
     flash[:success] = 'Successfully created Activity' if @activity.save
     respond_with(@activity)
   end
