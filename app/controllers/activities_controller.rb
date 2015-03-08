@@ -26,6 +26,21 @@ class ActivitiesController < ApplicationController
     respond_with(@activity)
   end
 
+  def edit
+    @activity = Activity.find(params[:id])
+  end
+
+  def update
+    @activity = Activity.find(params[:id])
+    if @activity.update_attributes(activity_params)
+      flash[:success] = 'Successfull updated Activity' if @activity.save
+      respond_with(@activity)
+    else
+      flash[:alert] = 'Error editing Activity'
+      render :edit
+    end
+  end
+
   def destroy
     @activity = Activity.find(params[:id])
     @activity.destroy
