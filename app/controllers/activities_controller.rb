@@ -33,7 +33,7 @@ class ActivitiesController < ApplicationController
   def update
     @activity = Activity.find(params[:id])
     if @activity.update_attributes(activity_params)
-      flash[:success] = 'Successfull updated Activity' if @activity.save
+      flash[:success] = 'Successfull updated Activity'
       respond_with(@activity)
     else
       flash[:alert] = 'Error editing Activity'
