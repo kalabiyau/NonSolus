@@ -22,8 +22,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [ :index, :show ]
-
   namespace :saml do
     get :init
     post :consume
