@@ -50,12 +50,10 @@ class ActivitiesController < ApplicationController
   def join
     @activity = Activity.find(params[:id])
     unless @current_user
-      flash.now.alert = 'You need to be logged in to join an activity!'
-      redirect_to @activity and return
+      redirect_to @activity, alert: 'You need to be logged in to join an activity!' and return
     end
     @current_user.activities << @activity
-    flash.now.notice = 'You joined the activity'
-    redirect_to activities_url
+    redirect_to activities_url, notice: 'You joined the activity'
   end
 
   def search
