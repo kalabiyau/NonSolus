@@ -12,6 +12,5 @@ html
       = render 'header'
       .row
         .col-md-12
-          - flash.each do |name, msg|
-            = content_tag :div, msg, class: name
+          = flash_messages
       = yield
