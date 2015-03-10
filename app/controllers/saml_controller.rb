@@ -11,7 +11,6 @@ class SamlController < ApplicationController
   def consume
     response = OneLogin::RubySaml::Response.new(params[:SAMLResponse], allowed_clock_drift: 1)
     response.settings = saml_settings
-
     if response.is_valid?
       user = User.find_or_create_for_saml({ username: response.name_id.downcase,
                                             email: saml_attribute(response, 'mail').downcase,

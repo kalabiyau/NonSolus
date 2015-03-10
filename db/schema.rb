@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307132212) do
+ActiveRecord::Schema.define(version: 20150310090810) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150307132212) do
     t.text     "description"
     t.integer  "category_id"
     t.integer  "creator_id"
+    t.boolean  "urgent"
   end
 
   add_index "activities", ["creator_id"], name: "index_activities_on_creator_id"

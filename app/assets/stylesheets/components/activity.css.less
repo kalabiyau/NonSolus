@@ -8,6 +8,25 @@
     }
 
     .category_plane {
+      .urgent_triangle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        padding-bottom: 10%;
+        padding-left: 10%;
+        overflow: hidden;
+      }
+      .urgent_triangle:after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        margin-left: -500px;
+        border-bottom: 500px solid transparent;
+        border-left: 500px solid red;
+      }
       height: 120px;
       display: block;
       width: 50px;

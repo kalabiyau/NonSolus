@@ -1,6 +1,8 @@
 .activity
   .activity_box.col-md-4
     .category_plane style="background-color: ##{activity.color}"
+      - if activity.urgent
+        .urgent_triangle
       .icon_holder
         span class="fa #{activity.icon}"
       .avatar
