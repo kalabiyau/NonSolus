@@ -1,6 +1,7 @@
 class Activity < ActiveRecord::Base
 
   include ActivityConcern
+  include Filterable
 
   has_and_belongs_to_many :users
   belongs_to :creator, class_name: User
@@ -13,7 +14,10 @@ class Activity < ActiveRecord::Base
   validates :name, uniqueness: true
 
   scope :name_like, lambda{|l|  where('lower(name) LIKE :l or lower(description) LIKE :l', l: "%#{l}%")}
-  default_scope { order(id: :desc) }
+  scope :urgent, lambda { |u| where(urgent: true) }
+  scope :category, lambda {|c| joins(:category).where(categories: { name: c})}
+
+  default_scope { includes(:creator, :category).order(id: :desc) }
 
 end
 

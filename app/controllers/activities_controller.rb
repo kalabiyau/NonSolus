@@ -3,7 +3,13 @@ class ActivitiesController < ApplicationController
   respond_to :html, :js
 
   def index
-    @activities = Activity.includes(:category, :creator).all
+    @activities = Activity.filter(filtering_params)
+    #respond_with(@activities)
+    if request.xhr?
+      render @activities
+    else
+      respond_with(@activities)
+    end
   end
 
   def new
@@ -69,6 +75,10 @@ class ActivitiesController < ApplicationController
 
   def activity_params
     params.require(:activity).permit(:name, :description, :category_id, :urgent)
+  end
+
+  def filtering_params
+    params.slice(:urgent, :category)
   end
 
 end
