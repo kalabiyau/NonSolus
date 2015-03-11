@@ -1,0 +1,11 @@
+.row
+  = form_for current_user do |f|
+    fieldset
+    = render 'shared/error_messages', target: @current_user
+    .field
+      = f.label :receive_mails, 'Want to receive Notifications?'
+      = f.check_box :subscriber
+
+      div align="left"
+      .actions = f.submit 'Save'
+

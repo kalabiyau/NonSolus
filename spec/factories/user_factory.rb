@@ -6,6 +6,6 @@ FactoryGirl.define do
     sequence(:email) { Faker::Internet.email }
     sequence(:username) {|n| "#{Faker::Internet.user_name}#{n}" }
     sequence(:workforceid) { Faker.numerify('#######') }
+    sequence(:subscriber) { false }
   end
-
 end
