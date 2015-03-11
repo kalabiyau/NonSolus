@@ -25,6 +25,7 @@ gem 'responders'
 gem 'sidekiq'
 gem 'whenever'
 gem 'versionist'
+gem 'pundit'
 
 group :development do
   gem 'quiet_assets'

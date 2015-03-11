@@ -15,9 +15,10 @@
     .actions
       span
         = link_to 'Show', activity_url(activity)
-      span
-        = link_to 'Edit', edit_activity_url(activity)
-      span.destroy
-        = link_to 'Destroy', activity_url(activity), method: :delete
+      - if policy(activity).update?
+        span
+          = link_to 'Edit', edit_activity_url(activity)
+        span.destroy
+          = link_to 'Destroy', activity_url(activity), method: :delete
       span.join
         = link_to 'Join', join_activity_url(activity), method: :post

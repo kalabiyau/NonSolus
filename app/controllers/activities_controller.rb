@@ -4,7 +4,6 @@ class ActivitiesController < ApplicationController
 
   def index
     @activities = Activity.filter(filtering_params)
-    #respond_with(@activities)
     if request.xhr?
       render @activities
     else
@@ -38,6 +37,7 @@ class ActivitiesController < ApplicationController
 
   def update
     @activity = Activity.find(params[:id])
+    authorize @activity
     if @activity.update_attributes(activity_params)
       flash.now.notice = 'Successfull updated Activity'
       respond_with(@activity)
