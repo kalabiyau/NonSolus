@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe 'activities index page' do
 
+  let(:user) { create(:user) }
+
   feature 'list activities' do
     scenario 'shows activities in an unsorted list' do
       create(:activity, name: 'drink coffee')
@@ -19,17 +21,18 @@ describe 'activities index page' do
 
   feature 'delete activity' do
     scenario 'each activity has a link which deletes activity and redirects back to index page' do
+      logged_as(user)
       create(:activity, name: 'drink coffee')
       visit activities_url
       expect(page).to have_content('drink coffee')
+      save_and_open_page
       click_link 'Destroy'
+      visit activities_url
       expect(page).to have_no_content('drink coffee')
     end
   end
 
   feature 'create activity' do
-
-    let(:user) { create(:user) }
 
     scenario 'create new Activity' do
       logged_as(user)
