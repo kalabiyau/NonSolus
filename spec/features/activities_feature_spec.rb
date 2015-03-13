@@ -4,6 +4,12 @@ describe 'activities index page' do
 
   let(:user) { create(:user) }
 
+  def fill_out_activity_form
+    fill_in 'Name', with: 'TestActivity'
+    fill_in 'Description', with: 'test description to test activity description'
+    select 'Other', from: 'activity_category_id'
+  end
+
   feature 'list activities' do
     scenario 'shows activities in an unsorted list' do
       create(:activity, name: 'drink coffee')
@@ -22,13 +28,14 @@ describe 'activities index page' do
   feature 'delete activity' do
     scenario 'each activity has a link which deletes activity and redirects back to index page' do
       logged_as(user)
-      create(:activity, name: 'drink coffee')
+      visit new_activity_url
+      fill_out_activity_form
+      click_button 'Save'
       visit activities_url
-      expect(page).to have_content('drink coffee')
-      save_and_open_page
+      expect(page).to have_content('TestActivity')
       click_link 'Destroy'
       visit activities_url
-      expect(page).to have_no_content('drink coffee')
+      expect(page).to have_no_content('TestActivity')
     end
   end
 
@@ -39,9 +46,7 @@ describe 'activities index page' do
       visit new_activity_path
       expect(page).to have_content('Name')
       expect(page).to have_content('Description')
-      fill_in 'Name', with: 'TestActivity'
-      fill_in 'Description', with: 'test description to test activity description'
-      select 'Other', from: 'activity_category_id'
+      fill_out_activity_form
       click_button 'Save'
       expect(page).to have_content('TestActivity')
       expect(page).to have_content('test description to test activity description')
