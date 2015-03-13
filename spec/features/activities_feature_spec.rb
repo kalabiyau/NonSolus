@@ -69,12 +69,22 @@ describe 'activities index page' do
 
     scenario 'should present a notice that user subscribed successfully to an activity' do
       user = create(:user)
+      create(:activity)
+      logged_as(user)
+      visit activities_url
+      click_link 'Join'
+      expect(page).to have_content('You joined the activity')
+    end
+
+    scenario 'should redirect to index page if user already joind activity' do
+      user = create(:user)
       activity = create(:activity)
       user.activities << activity
       logged_as(user)
       visit activities_url
       click_link 'Join'
-      expect(page).to have_content('You joined the activity')
+      expect(current_url).to eq activities_url
+      expect(page).to have_content 'User cannot join same activity twice'
     end
   end
 end

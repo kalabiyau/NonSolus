@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
 
-  has_and_belongs_to_many :activities
-  validates :first_name, :email, :username, :workforceid, presence: true
-  #validates :first_name, :last_name, :email, :username, :workforceid, presence: true
+  has_many :participations
+  has_many :activities, through: :participations
+  validates :first_name, :last_name, :email, :username, :workforceid, presence: true
   scope :subscribers, -> { where(subscriber: true) }
 
   class << self

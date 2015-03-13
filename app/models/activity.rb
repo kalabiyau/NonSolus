@@ -3,7 +3,9 @@ class Activity < ActiveRecord::Base
   include ActivityConcern
   include Filterable
 
-  has_and_belongs_to_many :users
+  has_many :participations
+  has_many :users, through: :participations
+
   belongs_to :creator, class_name: User
   belongs_to :category
 

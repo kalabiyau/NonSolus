@@ -58,8 +58,12 @@ class ActivitiesController < ApplicationController
     unless @current_user
       redirect_to @activity, alert: 'You need to be logged in to join an activity!' and return
     end
-    @current_user.activities << @activity
-    redirect_to activities_url, notice: 'You joined the activity'
+    @participation = Participation.new(user: current_user, activity: @activity)
+    if @participation.save
+      redirect_to activities_url, notice: 'You joined the activity'
+    else
+      redirect_to activities_url, alert: @participation.errors.full_messages.to_sentence
+    end
   end
 
   def search
