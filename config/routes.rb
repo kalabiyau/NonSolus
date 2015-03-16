@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root 'activities#index'
   get :about, to: 'application#about'
 
+  resource :dashboard, only: [:show], controller: :dashboard
+  resources :users, only: [:update]
+
   namespace :api, module: 'api', defaults: { format: 'json' } do
     api_version(module: 'V1', header: { name: 'Accept', value: 'application/vnd.act.suse.de; version=1' }, default: true) do
       resources :activities, only: [ :index, :show ] do
