@@ -11,7 +11,6 @@ class UsersController < ApplicationController
     redirect_to dashboard_url
   end
 
-
   protected
 
   def user_params
