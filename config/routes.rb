@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'activities#index'
   get :about, to: 'application#about'
 
-  resource :dashboard, only: [:show, :update], controller: :dashboard
+  resource :dashboard, only: [:show], controller: :dashboard
   resources :users, only: [:update]
 
   namespace :api, module: 'api', defaults: { format: 'json' } do
