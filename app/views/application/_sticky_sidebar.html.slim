@@ -2,7 +2,7 @@
   - if current_user
     .avatar
       = image_tag current_user.gravatar_url
-    = current_user.full_name
+    = link_to current_user.full_name
     = link_to saml_logout_url do
       | Logout
   - else
