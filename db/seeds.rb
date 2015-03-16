@@ -18,6 +18,10 @@ Category.find_or_initialize_by(name: 'Recreation').update_attributes(
     color: '015b7e',
     icon: 'fa-coffee'
 )
+Category.find_or_initialize_by(name: 'Hacking').update_attributes(
+    color: '6cd9d2',
+    icon: 'fa-file-code-o'
+)
 Category.find_or_initialize_by(name: 'Other').update_attributes(
     color: 'b1cb8e',
     icon: 'fa-question'
