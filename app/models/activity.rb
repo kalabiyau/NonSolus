@@ -19,7 +19,7 @@ class Activity < ActiveRecord::Base
   scope :urgent, lambda { |u| where(urgent: true) }
   scope :category, lambda {|c| joins(:category).where(categories: { name: c})}
 
-  default_scope { includes(:creator, :category).order(id: :desc) }
+  default_scope { includes(:creator, :category, { users: :participations } ).order(id: :desc) }
 
 end
 
