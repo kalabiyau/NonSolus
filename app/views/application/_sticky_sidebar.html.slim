@@ -1,4 +1,6 @@
 #sticky
+  = link_to root_url
+    = image_tag 'logo.png'
   - if current_user
     .avatar
       = image_tag current_user.gravatar_url
@@ -12,3 +14,5 @@
     .form-group
       input class='form-control' id='activity_search' placeholder='Search by activity name...'
   = render 'activities/filter'
+  .row
+    = link_to 'New', new_activity_path
