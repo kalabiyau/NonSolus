@@ -1,6 +1,6 @@
 Category.find_or_initialize_by(name: 'Travel').update_attributes(
     color: '598526',
-    icon: 'fa-plane'
+    icon: 'fa-car'
 )
 Category.find_or_initialize_by(name: 'Sport').update_attributes(
     color: 'd18816',
@@ -12,7 +12,7 @@ Category.find_or_initialize_by(name: 'Buy or Sell').update_attributes(
 )
 Category.find_or_initialize_by(name: 'Exchange').update_attributes(
     color: 'f36523',
-    icon: 'fa-exchange'
+    icon: 'fa-language'
 )
 Category.find_or_initialize_by(name: 'Recreation').update_attributes(
     color: '015b7e',
