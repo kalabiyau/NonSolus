@@ -15,5 +15,7 @@
     .form-group
       input class='form-control' id='activity_search' placeholder='Search by activity name...'
   = render 'activities/filter'
-  .row
+  .row.text-center
     = link_to 'add an activity', new_activity_path, class: 'btn btn-success btn-lg fa fa-plus' 
+  .row.footer
+    = link_to 'about', about_url
