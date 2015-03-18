@@ -66,6 +66,16 @@ class ActivitiesController < ApplicationController
     end
   end
 
+  def leave
+    @activity = Activity.find(params[:id])
+    unless @current_user
+      redirect_to @activity, alert: 'You need to be logged in to leave an activity!' and return
+    end
+    if @current_user.activities.delete(@activity)
+      redirect_to activities_url, notice: 'You left the activity'
+    end
+  end
+
   def search
     @activities = Activity.includes(:category, :creator).name_like(search_params[:q])
     render @activities
