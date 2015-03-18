@@ -5,6 +5,7 @@
     .avatar
       = image_tag current_user.gravatar_url
     = link_to current_user.full_name, dashboard_url
+    br
     = link_to saml_logout_url do
       | Logout
   - else
@@ -15,4 +16,4 @@
       input class='form-control' id='activity_search' placeholder='Search by activity name...'
   = render 'activities/filter'
   .row
-    = link_to 'New', new_activity_path
+    = link_to 'add an activity', new_activity_path, class: 'btn btn-success btn-lg fa fa-plus' 
