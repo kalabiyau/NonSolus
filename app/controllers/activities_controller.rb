@@ -18,8 +18,7 @@ class ActivitiesController < ApplicationController
   def create
     @activity = Activity.new(activity_params)
     unless @current_user
-      flash.now.alert = 'You need to be logged in to create an activity!'
-      render :new and return
+      redirect_to activities_url, notice: 'You need to be logged in to create an activity!' and return 
     end
     @activity.creator = @current_user
     flash.now.notice = 'Successfully created Activity' if @activity.save

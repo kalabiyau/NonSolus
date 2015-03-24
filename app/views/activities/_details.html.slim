@@ -1,0 +1,30 @@
+.modal-header style="background-color: ##{@activity.color}"
+  button.close aria-label="Close" data-dismiss="modal" type="button" 
+    span aria-hidden="true"  &times;
+  h1#activity-name.modal-title
+    .icon_holder
+      span class="fa #{@activity.icon} fa-4x"
+    = @activity.name
+.modal-body
+  .col-md-8
+    .category_plane
+      - if @activity.urgent
+        .urgent_triangle
+      .icon_holder
+        span class="fa #{@activity.icon}"
+      .avatar
+        = image_tag(@activity.creator.decorate.gravatar_url)
+    .details_plane
+      span.description
+        = @activity.description
+  
+  .col.md-4
+      - @activity.users.each do |member|
+        .avatar data-toggle='tooltip' data-placement='top' title="#{member.decorate.full_name}"
+          = image_tag(member.decorate.gravatar_url)
+.modal-footer
+  .actions
+    - if true
+      = link_to 'Join', join_activity_url(@activity), method: :post, class: 'btn btn-primary btn-lg fa fa-trash'
+      = link_to 'Edit', edit_activity_url(@activity), class: 'btn btn-success btn-lg fa fa-edit', remote: true
+      = link_to 'Destroy', activity_url(@activity), method: :delete, class: 'btn btn-danger btn-lg fa fa-trash', remote: true

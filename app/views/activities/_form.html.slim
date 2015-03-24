@@ -1,25 +1,31 @@
-.row
-  .col-md-12
-    = form_for @activity,  html: { class: 'form-horizontal' } do |f|
-      = render 'shared/error_messages', target: @activity
-      .form-group
-        = f.label :name, class: 'col-md-2 control-label'
-        .col-md-4
-          = f.text_field :name, placeholder: 'Activity name ...', class: 'form-control'
-      .form-group
-        = f.label :description, class: 'col-md-2 control-label'
-        .col-md-4
-          = f.text_area :description, placeholder: 'Describe your Activity...', class: 'form-control'
-      .form-group
-        = f.label :category, class: 'col-md-2 control-label'
-        .col-md-4
-          = f.collection_select :category_id, Category.all, :id, :name, {}, class: 'form-control'
-      .form-group
-        = f.label :urgent, class: 'col-md-2  control-label'
-        .col-md-4
-          = f.check_box :urgent, class: 'checkbox'
+.modal-header style=("background-image: url(assets/background-create-edit.jpg); background-size: inherit; height: 150px;")
+  button.close aria-label="Close" data-dismiss="modal" type="button" 
+    span aria-hidden="true"  &times;
+  h4#add_activity.modal-title
+.modal-body
+  .row
+    .col-md-12
+      = form_for @activity,  html: { class: 'form-horizontal' } do |f|
+        = render 'shared/error_messages', target: @activity
+        .form-group
+          = f.label :name, class: 'col-md-2 control-label'
+          .col-md-10
+            = f.text_field :name, placeholder: 'Activity name ...', class: 'form-control'
+        .form-group
+          = f.label :description, class: 'col-md-2 control-label'
+          .col-md-10
+            = f.text_area :description, placeholder: 'Describe your Activity...', class: 'form-control'
+        .form-group
+          = f.label :category, class: 'col-md-2 control-label'
+          .col-md-10
+            = f.collection_select :category_id, Category.all, :id, :name, {}, class: 'form-control'
+        .form-group
+          = f.label :urgent, class: 'col-md-2  control-label'
+          .col-md-10
+            = f.check_box :urgent, class: 'checkbox'
 
-      .form-group
-        .col-md-offset-2.col-md-10
-          .actions
-            = f.submit 'Save', class: 'btn btn-default'
+        .form-group
+          .col-md-offset-2.col-md-10
+            .actions
+              = f.submit 'Save', class: 'btn btn-primary'
+.modal-footer
