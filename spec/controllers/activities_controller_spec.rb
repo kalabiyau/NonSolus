@@ -93,6 +93,28 @@ describe ActivitiesController do
       expect(user.activities).to include(activity)
     end
 
+    it 'redirects to '
+
+    describe 'leave' do
+      it 'alert user if he is not logged in' do
+        activity = create(:activity)
+        post :leave, id: activity
+        expect(flash[:alert]).to eq('You need to be logged in to leave an activity!')
+        expect(response).to redirect_to activity_url(activity)
+      end
+
+      it 'allows user to leave an activity' do
+        user = create(:user)
+        activity = create(:activity)
+        request.session[:user_id] = user.id
+        post :join, id: activity.id
+        expect(user.activities).to include(activity)
+        post :leave, id: activity.id
+        expect(user.activities).not_to include(activity)
+        expect(flash[:notice]).to eq('You left the activity')
+      end
+    end
+
   end
 
 end

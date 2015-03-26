@@ -60,13 +60,6 @@ describe 'activities index page' do
       expect(page).to have_link('Join')
     end
 
-    scenario 'should raise an error if user wants to join an activity and is not logged in' do
-      create(:activity)
-      visit activities_url
-      click_link 'Join'
-      expect(page).to have_content('You need to be logged in to join an activity!')
-    end
-
     scenario 'should present a notice that user subscribed successfully to an activity' do
       user = create(:user)
       create(:activity)
@@ -76,15 +69,27 @@ describe 'activities index page' do
       expect(page).to have_content('You joined the activity')
     end
 
-    scenario 'should redirect to index page if user already joind activity' do
+    scenario 'should redirect to index page if user already joined activity' do
+      user = create(:user)
+      activity = create(:activity)
+      logged_as(user)
+      visit activities_url
+      click_link 'Join'
+      expect(page).to have_content 'You joined the activity'
+      click_link 'Join'
+      expect(current_url).to eq activities_url
+      expect(page).to have_content 'User cannot join same activity twice'
+    end
+  end
+
+  feature 'leave activity' do
+    scenario 'should present a link which allows user to leave an activity' do
       user = create(:user)
       activity = create(:activity)
       user.activities << activity
       logged_as(user)
-      visit activities_url
-      click_link 'Join'
-      expect(current_url).to eq activities_url
-      expect(page).to have_content 'User cannot join same activity twice'
+      visit activity_url(activity)
+      expect(page).to have_link('Leave')
     end
   end
 end

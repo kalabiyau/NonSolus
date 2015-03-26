@@ -13,6 +13,9 @@
       .description
         = activity.description.truncate(60)
     .actions
+      - if activity.users.include? @current_user
+        span.leave
+          = link_to 'Leave', leave_activity_url(activity), method: :post
       span
         = link_to 'Show', activity_url(activity)
       - if policy(activity).update?
@@ -22,7 +25,7 @@
           = link_to 'Destroy', activity_url(activity), method: :delete
       span.join
         = link_to 'Join', join_activity_url(activity), method: :post
-    .members
+      .members
       - activity.users.each do |member|
         .avatar data-toggle='tooltip' data-placement='top' title="#{member.decorate.full_name}"
           = image_tag(member.decorate.gravatar_url)
