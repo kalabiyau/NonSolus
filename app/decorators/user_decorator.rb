@@ -5,8 +5,8 @@ class UserDecorator < Draper::Decorator
     [ object.first_name, object.last_name ].join(' ')
   end
 
-  def gravatar_url
-    "//www.gravatar.com/avatar/#{Digest::MD5.hexdigest(object.email)}"
+  def gravatar_url(size=nil)
+    "//www.gravatar.com/avatar/#{Digest::MD5.hexdigest(object.email)}?s=#{size}"
   end
 
 end

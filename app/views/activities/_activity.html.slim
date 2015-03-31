@@ -1,19 +1,13 @@
 .activity.col-md-6
-  = link_to activity_url(activity), remote: true
+  = link_to activity_url(activity), remote: true, id: dom_id(activity)
     span.activity_box
       .category_plane style="background-color: ##{activity.color}"
         - if activity.urgent
           .urgent_triangle
         .icon_holder
           span class="fa #{activity.icon}"
-        .avatar
+        .avatar data-toggle='tooltip' data-placement='top' title="#{activity.creator.decorate.full_name}"
           = image_tag(activity.creator.decorate.gravatar_url)
       .details_plane
         .name
           = activity.name
-        .description
-          = activity.description.truncate(60)
-      .members
-        - activity.users.each do |member|
-          .avatar data-toggle='tooltip' data-placement='top' title="#{member.decorate.full_name}"
-            = image_tag(member.decorate.gravatar_url)

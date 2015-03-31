@@ -1,4 +1,8 @@
 ready = ->
+
+  $('#activity_203').click()
+  #  TODO: remove me! ^
+
   $('#activity_search').keyup ->
     $.post('/activities/search',
       q: $(this).val().toLowerCase()

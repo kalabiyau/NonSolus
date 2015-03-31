@@ -1,30 +1,35 @@
-.modal-header style="background-color: ##{@activity.color}"
-  button.close aria-label="Close" data-dismiss="modal" type="button" 
-    span aria-hidden="true"  &times;
-  h1#activity-name.modal-title
-    .icon_holder
-      span class="fa #{@activity.icon} fa-4x"
-    = @activity.name
-.modal-body
-  .col-md-8
-    .category_plane
-      - if @activity.urgent
-        .urgent_triangle
-      .icon_holder
-        span class="fa #{@activity.icon}"
-      .avatar
-        = image_tag(@activity.creator.decorate.gravatar_url)
-    .details_plane
-      span.description
-        = @activity.description
-  
-  .col.md-4
-      - @activity.users.each do |member|
-        .avatar data-toggle='tooltip' data-placement='top' title="#{member.decorate.full_name}"
-          = image_tag(member.decorate.gravatar_url)
-.modal-footer
-  .actions
-    - if true
-      = link_to 'Join', join_activity_url(@activity), method: :post, class: 'btn btn-primary btn-lg fa fa-trash'
-      = link_to 'Edit', edit_activity_url(@activity), class: 'btn btn-success btn-lg fa fa-edit', remote: true
-      = link_to 'Destroy', activity_url(@activity), method: :delete, class: 'btn btn-danger btn-lg fa fa-trash', remote: true
+.modal-header class='activity_modal_header'
+  button.close aria-label="Close" data-dismiss="modal" type="button" class='circle'
+    span aria-hidden="true" &times;
+  h1#add_activity.modal-title = @activity.name
+.modal-body.activity
+  .row
+    .col-md-4.left_pane
+      .avatar.medium
+        = image_tag(@activity.creator.decorate.gravatar_url(150))
+      .creator
+        .name
+          = @activity.creator.first_name
+      .details_pane
+        .category.category_icon
+          span.name Category
+          i class="fa #{@activity.category.icon} " data-toggle='tooltip' data-placement='top' title="#{@activity.category.name}"
+        .members
+          label Already Joined
+          .joined
+            - @activity.users.each do |member|
+              .avatar data-toggle='tooltip' data-placement='top' title="#{member.decorate.full_name}"
+                = image_tag(member.decorate.gravatar_url)
+        .actions.col-md-11
+          - if @activity.creator.id != current_user.id
+            - if !@activity.participations.include?(current_user)
+              = link_to 'Join', join_activity_url(@activity), method: :post, class: 'btn btn-primary btn-lg join_button'
+            - else
+              = link_to 'Leave', join_activity_url(@activity), method: :post, class: 'btn btn-primary btn-lg leave_button'
+          - else
+            = link_to 'Edit', edit_activity_url(@activity), class: 'btn btn-success btn-lg edit_button', remote: true
+            = link_to 'Destroy', activity_url(@activity), method: :delete, class: 'btn btn-danger btn-lg delete_button', remote: true, data: { confirm: 'Sure?' }
+
+
+    .col-md-8.vertical_divider.right_pane
+      = @activity.description

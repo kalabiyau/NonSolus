@@ -21,8 +21,8 @@ class ActivitiesController < ApplicationController
       redirect_to activities_url, notice: 'You need to be logged in to create an activity!' and return 
     end
     @activity.creator = @current_user
-    flash.now.notice = 'Successfully created Activity' if @activity.save
-    respond_with(@activity)
+    @activity.save
+
   end
 
   def show

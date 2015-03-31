@@ -1,6 +1,15 @@
 .activity {
   margin-bottom: 30px;
   margin-top: 30px;
+  cursor: pointer;
+
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
   .activity_box {
 
     position: relative;
@@ -12,10 +21,20 @@
     display: block;
     height: 120px;
     padding: 1em;
+    * {
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
 
     .details_plane {
       left: 1em;
       position: relative;
+      color: black;
+      *:hover {
+        text-decoration: none;
+      }
     }
 
     .category_plane {
@@ -81,6 +100,56 @@
     }
 
   }
+
+  &.modal-body {
+    margin-bottom: auto;
+    .left_pane {
+
+      min-height: 300px;
+
+      .activity {
+        cursor: auto;
+      }
+      .avatar {
+        margin: 0 auto;
+        margin-top: -83px;
+      }
+      .creator {
+        text-align: center;
+        font-weight: bold;
+        margin-top: 0.8em;
+      }
+
+      .details_pane {
+        & > * {
+          margin-top: 1em;
+        }
+        margin-top: 2em;
+        font-weight: bold;
+        .category_icon {
+          i {
+            margin-left: 5em;
+          }
+          .name {
+            color: @label_color;
+          }
+        }
+
+        .members {
+          .avatar {
+            margin-top: auto;
+            margin: 0.5em;
+            float: left;
+          }
+        }
+
+        .actions {
+          position: absolute;
+          bottom: 0;
+        }
+      }
+    }
+  }
 }
 
 .icon_holder {
@@ -90,3 +159,23 @@
     color: #ffffff;
   }
 }
+
+.join_button, .leave_button, .edit_button, .delete_button {
+  background-color: white;
+  font-weight: bold;
+  min-width: 110px;
+  display: block;
+  clear: both;
+  margin-top: 1em;
+}
+
+.join_button, .leave_button, .edit_button {
+  #gradient.horizontal(#1fad7a, #80c235);
+  border: 1px white solid;
+}
+
+.delete_button {
+  #gradient.horizontal(#996600, #80c235);
+  border: 1px white solid;
+}
+

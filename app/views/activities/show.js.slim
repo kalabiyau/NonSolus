@@ -1,3 +1,4 @@
 | $modal = $('#modal'), $modalContent = $('#modal .modal-dialog .modal-content'), $modalContent.html("
-= escape_javascript(render 'details')
-| "); $modal.modal(); 
+= escape_javascript(render 'details', locals: { activity: @activity })
+| "); $modal.modal();
+| $('[data-toggle="tooltip"]').tooltip();
