@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313155723) do
+ActiveRecord::Schema.define(version: 20150410153621) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20150313155723) do
     t.integer  "category_id"
     t.integer  "creator_id"
     t.boolean  "urgent"
+    t.integer  "capacity"
   end
 
   add_index "activities", ["creator_id"], name: "index_activities_on_creator_id"
@@ -33,6 +34,17 @@ ActiveRecord::Schema.define(version: 20150313155723) do
     t.string   "color"
     t.string   "icon"
   end
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "activity_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["activity_id"], name: "index_comments_on_activity_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "participations", force: :cascade do |t|
     t.integer "activity_id"

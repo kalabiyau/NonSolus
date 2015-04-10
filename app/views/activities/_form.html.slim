@@ -6,14 +6,14 @@
 .modal-body
   .row
     = form_for @activity, remote: true do |f|
-      .col-md-8
+      .col-md-8.vertical_divider
         = render 'shared/error_messages', target: @activity
         .form-group
           = f.text_field :name, placeholder: 'Title', class: 'form-control'
         .form-group
           = f.text_area :description, placeholder: 'Description', class: 'form-control description'
 
-      .col-md-4.vertical_divider
+      .col-md-4
         /.form-group
         /  = f.label :capacity, class: 'control-label'
         /  /= f.collection_select :category_id, Category.all, :id, :name, {}, class: 'form-control'
@@ -25,7 +25,7 @@
               | Not Urgent
           .radio
             label
-              = f.radio_button :urgent, @activity.urgent ? @activity.urgent : false
+              = f.radio_button :urgent, @activity.urgent ? @activity.urgent : true
               | Urgent
         .form-group.category
           = f.label :category, class: 'control-label'

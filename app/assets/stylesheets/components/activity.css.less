@@ -11,7 +11,7 @@
   }
 
   .activity_box {
-
+    background: white;
     position: relative;
     box-shadow: 0 0 30px grey;
     width: 90%;
@@ -67,15 +67,27 @@
       margin-bottom: -1em;
       padding: 1em;
       .avatar {
-        width: 27px;
+        width: 87px;
         position: absolute;
-        bottom: 1em;
-        margin-left: -2px;
+        margin-left: -37px;
+        top: 4.8em;
+        .creator_name {
+          position: absolute;
+          float: left;
+          margin-left: 73px;
+          margin-top: -60px;
+          background-color: white;
+          padding: 3px;
+          font-weight: bolder;
+        }
+        img {
+          width: 87px;
+          border: 3px white solid;
+        }
       }
     }
 
     .name {
-      font-family: 'Yanone Kaffeesatz', sans-serif;
       font-size: 1.3em;
     }
 
@@ -132,6 +144,15 @@
           }
           .name {
             color: @label_color;
+          }
+        }
+
+        .capacity {
+          .name {
+            color: @label_color;
+          }
+          .capacity_numbers {
+            margin-left: 7.2em;
           }
         }
 

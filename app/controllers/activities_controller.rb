@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
 
-  respond_to :html, :js
+  respond_to :js, :html
 
   def index
     @activities = Activity.filter(filtering_params)
@@ -21,12 +21,15 @@ class ActivitiesController < ApplicationController
       redirect_to activities_url, notice: 'You need to be logged in to create an activity!' and return 
     end
     @activity.creator = @current_user
-    @activity.save
-
+    if @activity.save
+      respond_with(@activity)
+    else
+      render :new
+    end
   end
 
   def show
-    @activity = Activity.find(params[:id])
+    @activity = Activity.includes(:comments).find(params[:id]).decorate
     respond_with(@activity)
   end
 
@@ -49,7 +52,7 @@ class ActivitiesController < ApplicationController
   def destroy
     @activity = Activity.find(params[:id])
     @activity.destroy
-    redirect_to(activities_url)
+    render partial: 'close_modal_rerender'
   end
 
   def join
@@ -81,7 +84,7 @@ class ActivitiesController < ApplicationController
   end
 
   def filtering_params
-    params.slice(:urgent, :category)
+    params.slice(:urgent, :category, :creator)
   end
 
 end

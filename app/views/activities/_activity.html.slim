@@ -8,6 +8,7 @@
           span class="fa #{activity.icon}"
         .avatar data-toggle='tooltip' data-placement='top' title="#{activity.creator.decorate.full_name}"
           = image_tag(activity.creator.decorate.gravatar_url)
+          .creator_name = activity.creator.first_name
       .details_plane
         .name
           = activity.name

@@ -1,7 +1,4 @@
-ready = ->
-
-  $('#activity_203').click()
-  #  TODO: remove me! ^
+$ ->
 
   $('#activity_search').keyup ->
     $.post('/activities/search',
@@ -9,7 +6,3 @@ ready = ->
     ).done((html) ->
       $('#activities').html(html)
     )
-
-$(document).ready(ready)
-$(document).on('page:load', ready)
-

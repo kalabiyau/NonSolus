@@ -1,21 +1,18 @@
 #sticky
-  = link_to root_url
-    = image_tag 'logo.png'
-  - if current_user
-    .avatar
-      = image_tag current_user.gravatar_url
-    = link_to current_user.full_name, dashboard_url
-    br
-    = link_to saml_logout_url do
-      | Logout
-  - else
-    = link_to saml_init_url do
-      | Login
-  form
-    .form-group
-      input class='form-control' id='activity_search' placeholder='Search by activity name...'
-  = render 'activities/filter'
+  .cockpit
+    = render 'cockpit'
+  .logo
+    = link_to root_url
+      = image_tag 'logo.png'
+  .row
+    .col-md-12
+      form
+        .form-group
+          input class='form-control' id='activity_search' placeholder='search'
+  .row
+    .col-md-12
+      = render 'activities/filter'
   .row.text-center
-    = link_to 'add an activity', new_activity_url, class: 'btn btn-success btn-lg fa fa-plus', remote: true
+    = link_to ' add an activity', new_activity_url, id: 'add_an_activity', class: 'btn btn-success btn-lg fa fa-plus', remote: true
   .row.footer
     = link_to 'about', about_url

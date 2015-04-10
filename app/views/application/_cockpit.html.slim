@@ -1,0 +1,18 @@
+.row
+  - if current_user
+    .col-md-4
+      = link_to 'my entries', activities_url(creator: current_user.id), id: 'my_entries'
+    .col-md-4.col-md-offset-4
+      .user_avatar_actions_popover.hide
+        .dashboard
+          = link_to 'Dashboard', dashboard_url
+        .logout
+          = link_to 'Logout', saml_logout_url
+      .avatar.pull-right[
+        data-toggle='popover'
+        data-placement='bottom'
+      ]
+        = image_tag current_user.gravatar_url
+  - else
+    .col-md-4
+      = link_to 'Login', saml_init_url

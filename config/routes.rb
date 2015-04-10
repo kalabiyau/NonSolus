@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :activities do
+    resources :comments, only: [:create, :index]
     collection do
       post :search
     end
