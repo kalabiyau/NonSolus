@@ -1,9 +1,10 @@
 class ActivitiesController < ApplicationController
 
-  respond_to :html, :js
+  respond_to :js, :html
+  before_filter :authorize_user!, only: [ :create, :update, :edit, :destroy, :join, :new ]
 
   def index
-    @activities = Activity.filter(filtering_params)
+    @activities = Activity.includes(:creator, :category).filter(filtering_params)
     if request.xhr?
       render @activities
     else
@@ -17,17 +18,18 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = Activity.new(activity_params)
-    unless @current_user
-      flash.now.alert = 'You need to be logged in to create an activity!'
-      render :new and return
-    end
     @activity.creator = @current_user
-    flash.now.notice = 'Successfully created Activity' if @activity.save
-    respond_with(@activity)
+    if @activity.save!
+      flash.now.notice = 'Successfully created Activity'
+      respond_with(@activity)
+    else
+      render :new
+    end
   end
 
   def show
-    @activity = Activity.find(params[:id])
+    @activity = Activity.includes(:comments).find(params[:id]).decorate
+    @comment = Comment.new
     respond_with(@activity)
   end
 
@@ -39,7 +41,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
     authorize @activity
     if @activity.update_attributes(activity_params)
-      flash.now.notice = 'Successfull updated Activity'
+      flash.now.notice = 'Successfully updated Activity'
       respond_with(@activity)
     else
       flash.now.alert = 'Error editing Activity'
@@ -49,21 +51,29 @@ class ActivitiesController < ApplicationController
 
   def destroy
     @activity = Activity.find(params[:id])
+    authorize(@activity)
     @activity.destroy
-    redirect_to(activities_url)
+    respond_to do |f|
+      f.js { render partial: 'close_modal_rerender' }
+    end
   end
 
   def join
     @activity = Activity.find(params[:id])
-    unless @current_user
-      redirect_to @activity, alert: 'You need to be logged in to join an activity!' and return
-    end
+    authorize(@activity)
     @participation = Participation.new(user: current_user, activity: @activity)
     if @participation.save
       redirect_to activities_url, notice: 'You joined the activity'
     else
       redirect_to activities_url, alert: @participation.errors.full_messages.to_sentence
     end
+  end
+
+  def leave
+    @activity = Activity.find(params[:id])
+    authorize(@activity)
+    @activity.users.destroy(current_user)
+    redirect_to activities_url, notice: 'You left activity'
   end
 
   def search
@@ -78,11 +88,11 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:name, :description, :category_id, :urgent)
+    params.require(:activity).permit(:name, :description, :category_id, :urgent, :capacity)
   end
 
   def filtering_params
-    params.slice(:urgent, :category)
+    params.slice(:urgent, :category, :creator)
   end
 
 end

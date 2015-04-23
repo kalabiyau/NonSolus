@@ -1,0 +1,11 @@
+.row
+  .comment
+    .col-md-1
+      .avatar data-toggle='tooltip' data-placement='top' title="#{comment.user.decorate.full_name}"
+        = image_tag(comment.user.decorate.gravatar_url)
+    .col-md-9.comments_content
+      .content
+        = comment.content
+    .col-md-2
+      .createad_at
+        = l(comment.created_at, format: :short)

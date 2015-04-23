@@ -10,8 +10,10 @@ html
   body
     = render 'sticky_sidebar'
     .container-fluid
-      = render 'header'
       .row
         .col-md-12
           = flash_messages
       = yield
+    #modal.modal.fade aria-hidden='true' aria-labelledby='add_activity' role='dialog' tabindex='-1' 
+      .modal-dialog.modal-lg
+        .modal-content

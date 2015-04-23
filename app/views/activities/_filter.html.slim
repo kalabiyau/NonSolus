@@ -1,11 +1,15 @@
 form#activities_filter
+  h4 Sort by
+  .checkbox
+    label
+      input name='urgent' type='checkbox' value='true'
+      | Urgent
   h4 Category Filter
   - Category.find_each do |category|
     .checkbox
-      input name='category[]' type='checkbox' value="#{category.name}"
-      i class="fa #{category.icon}"
-      span.name = category.name
+      label
+        input name='category[]' type='checkbox' value="#{category.name}"
+        i class="fa #{category.icon}"
+        span.name = category.name
   hr
-  .checkbox
-    input name='urgent' type='checkbox' value='true'
-    | Urgent
+

@@ -27,6 +27,4 @@ describe Activity do
 
   end
 
-  describe 'join'
-
 end

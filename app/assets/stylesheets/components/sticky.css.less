@@ -1,19 +1,76 @@
 #sticky {
   padding: 1em;
-  background: lightcyan;
+  background: white;
   box-shadow: 0 0 30px grey;
   height: 100%;
-  width: 230px;
+  width: 330px;
   display: block;
   position: absolute;
   left: 0;
   top: 0;
-  .avatar {
-    float: left;
-    margin: 0 1em 1em 0;
 
+  .logo {
+    position: relative;
+    top: 1em;
+    margin-bottom: 4em;
   }
+
+  h4 {
+    color: green;
+  }
+
+  .avatar {
+    cursor: pointer;
+  }
+
+  #add_an_activity {
+    border-radius: 0;
+    font-size: inherit;
+    background-color: orange;
+    border-color: orange;
+    &.fa:before {
+      margin-right: .4em;
+    }
+  }
+
   #activity_search {
-    width: 200px;
+    border: 0;
+    outline: 0 none;
+    border-bottom: solid 2px #e1e1e1;
+    border-radius: 0;
+
+    &:focus {
+      outline: 0 none;
+      border-bottom: solid 2px #e1e1e1;
+      box-shadow: none;
+    }
+    &::-webkit-input-placeholder {
+      line-height: 1.5em;
+      text-align: right;
+      font-size: 1.3em;
+    }
+    &::-moz-placeholder {
+      line-height: 1.5em;
+      text-align: right;
+      font-size: 1.3em;
+    }
+    &::-moz-placeholder {
+      line-height: 1.5em;
+      text-align: right;
+      font-size: 1.3em;
+    }
+    &::-ms-input-placeholder {
+      line-height: 1.5em;
+      text-align: right;
+      font-size: 1.3em;
+    }
+  }
+  .footer {
+    position: absolute;
+    margin: 0 1em 1em 0;
+    bottom: 5px;
+    a {
+      color: gray;
+    }
   }
 }

@@ -1,15 +1,56 @@
 h1 NonSolus
 
-| Started as a Ruby on Rails learning course with one purpose to learn Rails and
-  provide our colleages a way to hangout easier.
+p In the yearly 2015 we started a Ruby on Rails course within SUSE. With sole purpose to deliver that tech to interested people.
+p We got quite some people and as a result of that learning course we are happy to deliver you a brand new toy - #{link_to 'https://act.suse.de', 'https://act.suse.de', target: :blank}
 
-h2 HowTo
+h2 What it is?
 
-| ...
+p NonSolus (not alone - lat.) is the tool for internal company usage. The goal is to give us - awesome guys within SUSE
+  a way to hangout more frequently and with nice tool which can support that.
+
+p Thing is very simple. You can create an activity which you want to share with colleagues.
+  People can join those activities and hangout/play/exchange or buy/sell things.
+
+  Activity can have several attributes (some are mandatory)
+ul
+  li Name - describes in short what is activity is all about. Like `have a beer together` or `Sail to the Hawaii and back`
+  li Description - detailed info about activity - anything you want to add to the name to better explain your activity
+  li Capacity - sometimes you have only 4 sits in car and  you want to invite people to join a ride, but to limit applicants number
+     0 means unlimited of course :)
+  li Urgency - by special red triangle in the listing you can see that this activity is urgent from the creator's perspective
+  li Category - you can assign a category to a an activity. Each of them has name, special color and icon. In the listing you can filter by category.
+
+p So, let's say you just created your first activity - that one will appear in the listing on the main page.
+  People who logged in into the system (with their business credentials) can join your activity or comment on that one
+
+p As the creator you can see all created by you activities via link in the left top corner `my entries`.
+
+h2 Features
+
+ul
+  li Create an Activity
+  li List and filter activity
+  li Your Gravatar (LoginManage email is used) in activities and comments
+  li Ability to subscribe to daily digest via dashboard
+  li LoginManager integration
+  li TLS traffic encryption
+  li heavily AJAXified application
+  li Search by name or description of an activity
+  li WIP: json API
+
+h2 Authentication
+
+p Made via SAML protocol against internal instance of LoginManager
+
+h2 Security
+
+p Secured via TLS with #{link_to 'SUSE CA', 'http://ca.suse.de/'}
+
 
 h3 Feature requests, bug reports
 
-=link_to 'GitHub issues page', 'https://github.com/kalabiyau/NonSolus/issues'
+| We will be happy to receive your feedback on the project. Bugs, Pull Request are very welcome and you can do that via:
+= link_to 'GitHub issues page', 'https://github.com/kalabiyau/NonSolus/issues'
 
 h3 Team
 

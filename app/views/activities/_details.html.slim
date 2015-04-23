@@ -1,0 +1,44 @@
+.modal-header class='activity_modal_header'
+  button.close aria-label="Close" data-dismiss="modal" type="button" class='circle'
+    span aria-hidden="true" &times;
+  h1#add_activity.modal-title = @activity.name
+.modal-body.activity
+  .row
+    .col-md-4.left_pane
+      .avatar.medium
+        = image_tag(@activity.creator.decorate.gravatar_url(150))
+      .creator
+        .name
+          = @activity.creator.first_name
+      .details_pane
+        .category.category_icon
+          span.name Category
+          i class="fa #{@activity.category.icon} " data-toggle='tooltip' data-placement='top' title="#{@activity.category.name}"
+        .capacity
+          span.name Capacity
+          span.capacity_numbers = @activity.capacity_numbers
+        - if @activity.users.any?
+          .members
+            label Already Joined
+            .joined
+              - @activity.users.each do |member|
+                .avatar data-toggle='tooltip' data-placement='top' title="#{member.decorate.full_name}"
+                  = image_tag(member.decorate.gravatar_url)
+        .actions.col-md-11
+          - if policy(@activity).join?
+            = link_to 'Join', join_activity_url(@activity), method: :post, class: 'btn btn-primary btn-lg join_button'
+          - if policy(@activity).leave?
+            = link_to 'Leave', leave_activity_url(@activity), method: :post, class: 'btn btn-primary btn-lg leave_button'
+          - if policy(@activity).update?
+            = link_to 'Edit', edit_activity_url(@activity), class: 'btn btn-success btn-lg edit_button', remote: true
+            = link_to 'Destroy', activity_url(@activity), method: :delete, class: 'btn btn-danger btn-lg delete_button', remote: true, data: { confirm: 'Sure?' }
+
+    .col-md-8.vertical_divider.right_pane
+      .description
+        = @activity.description
+      #comments
+        - if @activity.comments.any?
+          h3 Comments
+          = render partial: 'comments/comment', collection: @activity.comments
+      = render partial: 'comments/form', locals: { activity: @activity }
+

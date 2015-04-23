@@ -1,0 +1,83 @@
+.modal-content {
+
+  .circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #ffffff;
+    &.blue {
+      background-color: #0075a3;
+    }
+    &.red {
+      background-color: #f36525;
+    }
+  }
+
+  .activity_modal_header {
+    background-image: asset-url('background-create-edit.jpg');
+    background-size: inherit;
+    height: 150px;
+
+    .modal-title {
+      background-color: #ffffff;
+      padding: 0 .3em 0 .3em;
+      display: block;
+      float: left;
+    }
+
+  }
+
+  .modal-body {
+    label {
+      color: @label_color
+    }
+    .circle {
+      width: 15px;
+      height: 15px;
+      display: block;
+      float: left;
+    }
+    .radio {
+      label {
+        color: black;
+      }
+    }
+    .description {
+      height: 390px;
+    }
+
+    .vertical_divider {
+      border-right: 1px #959595 solid;
+    }
+
+    .right_pane {
+      form#new_comment {
+        input[type="text"] {
+          width: 35.6em;
+        }
+        input[type="submit"] {
+          margin-left: 1em;
+        }
+      }
+      #comments {
+        .tooltip {
+          max-width: 200px;
+          width: 150px;
+        }
+        .createad_at {
+          font-size: .7em;
+        }
+        bottom: 1.4em;
+        padding-bottom: 1em;
+        .comment {
+          .comments_content {
+            padding-left: .3em;
+          }
+          word-break: break-all;
+          margin: .5em 0 .5em 0;
+        }
+      }
+    }
+  }
+}
+

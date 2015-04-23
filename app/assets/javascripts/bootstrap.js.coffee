@@ -1,4 +1,3 @@
-jQuery ->
-  $("a[rel~=popover], .has-popover").popover()
+$ ->
   $("a[rel~=tooltip], .has-tooltip").tooltip()
-  $('[data-toggle="tooltip"]').tooltip()
+  $(document.body).tooltip({ selector: '[data-toggle="tooltip"]' }).tooltip()

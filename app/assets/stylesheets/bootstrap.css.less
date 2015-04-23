@@ -1,6 +1,10 @@
 @import "twitter/bootstrap/bootstrap";
 @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
-@import url(//fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700);
+@import url(//fonts.googleapis.com/css?family=Raleway:400,700);
+
+* {
+  font-family: 'Raleway';
+}
 
 html {
   overflow: -moz-scrollbars-vertical;
@@ -12,5 +16,24 @@ html,body {
 }
 
 .container-fluid {
-  margin-left: 300px;
+  margin-top: 50px;
+  margin-left: 350px;
 }
+
+a {
+  color: black;
+}
+@label_color: #7cc144;
+
+body {
+  background: url(tree_bark.png);
+}
+
+@import 'components/activities_filter.css.less';
+@import 'components/activity.css.less';
+@import 'components/avatar.css.less';
+@import 'components/header.css.less';
+@import 'components/modal.css.less';
+@import 'components/sticky.css.less';
+@import 'components/category.css.less';
+

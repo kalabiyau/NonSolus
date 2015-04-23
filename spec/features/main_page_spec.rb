@@ -6,7 +6,7 @@ describe 'Main Page Feature' do
 
     it  'shows link New on the main page' do
       visit '/'
-      expect(page).to have_link('New', activities_url)
+      expect(page).to have_link('add an activity', activities_url)
     end
 
     it  'shows text Fellow Rubyist!' do

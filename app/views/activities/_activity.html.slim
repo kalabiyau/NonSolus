@@ -1,28 +1,16 @@
-.activity
-  .activity_box.col-md-4
-    .category_plane style="background-color: ##{activity.color}"
-      - if activity.urgent
-        .urgent_triangle
-      .icon_holder
-        span class="fa #{activity.icon}"
-      .avatar
-        = image_tag(activity.creator.decorate.gravatar_url)
-    .details_plane
-      .name
-        = activity.name
-      .description
-        = activity.description.truncate(60)
-    .actions
-      span
-        = link_to 'Show', activity_url(activity)
-      - if policy(activity).update?
-        span
-          = link_to 'Edit', edit_activity_url(activity)
-        span.destroy
-          = link_to 'Destroy', activity_url(activity), method: :delete
-      span.join
-        = link_to 'Join', join_activity_url(activity), method: :post
-    .members
-      - activity.users.each do |member|
-        .avatar data-toggle='tooltip' data-placement='top' title="#{member.decorate.full_name}"
-          = image_tag(member.decorate.gravatar_url)
+.activity.col-md-6
+  = link_to activity_url(activity), remote: true, id: dom_id(activity)
+    span.activity_box
+      .category_plane style="background-color: ##{activity.color}"
+        - if activity.urgent
+          .urgent_triangle
+        .icon_holder
+          span class="fa #{activity.icon}"
+        .avatar data-toggle='tooltip' data-placement='top' title="#{activity.creator.decorate.full_name}"
+          = image_tag(activity.creator.decorate.gravatar_url)
+          .creator_name = activity.creator.first_name
+      .details_plane
+        .name
+          = activity.name
+        .description
+          = truncate(activity.description, length: 100)
