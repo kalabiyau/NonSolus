@@ -7,6 +7,7 @@ require 'capybara/rails'
 require 'capybara/rspec'
 require 'database_cleaner'
 require 'shoulda/matchers'
+require 'pundit/rspec'
 require 'rack_session_access/capybara'
 
 # Schema and seeds handling

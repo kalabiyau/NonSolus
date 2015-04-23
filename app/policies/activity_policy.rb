@@ -1,4 +1,4 @@
-class ActivityPolicy < ApplicationPolicy
+class ActivityPolicy
   attr_reader :user, :activity
 
   def initialize(user, activity)

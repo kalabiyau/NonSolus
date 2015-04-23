@@ -19,7 +19,8 @@ class ActivitiesController < ApplicationController
   def create
     @activity = Activity.new(activity_params)
     @activity.creator = @current_user
-    if @activity.save
+    if @activity.save!
+      flash.now.notice = 'Successfully created Activity'
       respond_with(@activity)
     else
       render :new
@@ -40,7 +41,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
     authorize @activity
     if @activity.update_attributes(activity_params)
-      flash.now.notice = 'Successfull updated Activity'
+      flash.now.notice = 'Successfully updated Activity'
       respond_with(@activity)
     else
       flash.now.alert = 'Error editing Activity'
@@ -52,7 +53,9 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
     authorize(@activity)
     @activity.destroy
-    render partial: 'close_modal_rerender'
+    respond_to do |f|
+      f.js { render partial: 'close_modal_rerender' }
+    end
   end
 
   def join

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   include Pundit
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :exception unless Rails.env.test?
   before_filter :current_user
 
   def about; end
@@ -32,11 +32,11 @@ class ApplicationController < ActionController::Base
 
   def authorize_user!
     unless @current_user
+      flash[:alert] = 'You need to be logged in to proceed!'
       if request.xhr?
-        flash[:notice] = 'You need to be logged in to proceed!'
         render js: %(location.reload();)
       else
-        redirect_to root_url, notice: 'You need to be logged in to proceed!'
+        redirect_to root_url
       end
     end
   end
