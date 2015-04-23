@@ -1,3 +1,7 @@
 - if current_user
-  = form_for [activity, Comment.new] do |f|
-    = f.text_field :content
+  = form_for [@activity, @comment], remote: true, html: { class: 'form-inline' } do |f|
+    = render 'shared/error_messages', target: @comment
+    .form-group
+      = f.text_field :content, class: 'form-control', placeholder: 'Leave the comment (140 symbols max)'
+    .form-group
+      = f.submit '&crarr;'.html_safe, class: 'form-control btn btn-default'

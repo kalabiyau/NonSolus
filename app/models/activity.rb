@@ -1,5 +1,7 @@
 class Activity < ActiveRecord::Base
 
+  CAPACITY_OPTIONS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 25, 50, 100]
+
   include ActivityConcern
   include Filterable
 
@@ -24,8 +26,7 @@ class Activity < ActiveRecord::Base
   scope :category, lambda {|c| joins(:category).where(categories: { name: c})}
   scope :creator, lambda {|c| joins(:creator).where(creator_id: c)}
 
-  default_scope { includes(:creator, :category, { users: :participations } ).order(id: :desc) }
-
+  default_scope { order(id: :desc) }
 
   def full?
     capacity > 0 && capacity == users.count

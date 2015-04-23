@@ -12,3 +12,5 @@
       .details_plane
         .name
           = activity.name
+        .description
+          = truncate(activity.description, length: 100)

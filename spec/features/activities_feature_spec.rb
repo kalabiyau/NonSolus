@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'activities index page' do
+describe 'activities index page', js: true do
 
   let(:user) { create(:user) }
 
@@ -28,7 +28,8 @@ describe 'activities index page' do
   feature 'delete activity' do
     scenario 'each activity has a link which deletes activity and redirects back to index page' do
       logged_as(user)
-      visit new_activity_url
+      visit root_url
+      click_button 'add_an_activity'
       fill_out_activity_form
       click_button 'Save'
       visit activities_url

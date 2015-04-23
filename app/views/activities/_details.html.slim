@@ -25,19 +25,20 @@
                 .avatar data-toggle='tooltip' data-placement='top' title="#{member.decorate.full_name}"
                   = image_tag(member.decorate.gravatar_url)
         .actions.col-md-11
-          - if @activity.creator.id != current_user.id
-            - if !@activity.users.include?(current_user) && !@activity.full?
-              = link_to 'Join', join_activity_url(@activity), method: :post, class: 'btn btn-primary btn-lg join_button'
-            - elsif @activity.users.include?(current_user)
-              = link_to 'Leave', join_activity_url(@activity), method: :post, class: 'btn btn-primary btn-lg leave_button'
-          - else
+          - if policy(@activity).join?
+            = link_to 'Join', join_activity_url(@activity), method: :post, class: 'btn btn-primary btn-lg join_button'
+          - if policy(@activity).leave?
+            = link_to 'Leave', leave_activity_url(@activity), method: :post, class: 'btn btn-primary btn-lg leave_button'
+          - if policy(@activity).update?
             = link_to 'Edit', edit_activity_url(@activity), class: 'btn btn-success btn-lg edit_button', remote: true
             = link_to 'Destroy', activity_url(@activity), method: :delete, class: 'btn btn-danger btn-lg delete_button', remote: true, data: { confirm: 'Sure?' }
 
-
     .col-md-8.vertical_divider.right_pane
-      = @activity.description
+      .description
+        = @activity.description
       #comments
-        = render partial: 'comments/comment', collection: @activity.comments
-        = render partial: 'comments/form', locals: { activity: @activity }
+        - if @activity.comments.any?
+          h3 Comments
+          = render partial: 'comments/comment', collection: @activity.comments
+      = render partial: 'comments/form', locals: { activity: @activity }
 

@@ -43,7 +43,7 @@
       }
     }
     .description {
-      height: 320px;
+      height: 390px;
     }
 
     .vertical_divider {
@@ -51,9 +51,31 @@
     }
 
     .right_pane {
+      form#new_comment {
+        input[type="text"] {
+          width: 35.6em;
+        }
+        input[type="submit"] {
+          margin-left: 1em;
+        }
+      }
       #comments {
-        position: absolute;
-        bottom: 1em;
+        .tooltip {
+          max-width: 200px;
+          width: 150px;
+        }
+        .createad_at {
+          font-size: .7em;
+        }
+        bottom: 1.4em;
+        padding-bottom: 1em;
+        .comment {
+          .comments_content {
+            padding-left: .3em;
+          }
+          word-break: break-all;
+          margin: .5em 0 .5em 0;
+        }
       }
     }
   }

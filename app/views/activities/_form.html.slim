@@ -14,9 +14,9 @@
           = f.text_area :description, placeholder: 'Description', class: 'form-control description'
 
       .col-md-4
-        /.form-group
-        /  = f.label :capacity, class: 'control-label'
-        /  /= f.collection_select :category_id, Category.all, :id, :name, {}, class: 'form-control'
+        .form-group
+          = f.label :capacity, class: 'control-label'
+          = f.collection_select :capacity, Activity::CAPACITY_OPTIONS, :to_s, :to_s, {}, class: 'form-control'
         .form-group
           = f.label 'Urgency', class: 'control-label'
           .radio

@@ -26,6 +26,7 @@ group :development do
   gem 'mina'
   gem 'mina-unicorn', require: false
   gem 'mina-sidekiq', require: false
+  gem 'bullet'
 end
 
 group :development, :test do
@@ -38,6 +39,7 @@ group :development, :test do
   gem 'letter_opener'
   gem 'launchy'
   gem 'awesome_print'
+  gem 'thin'
 end
 
 group :test do

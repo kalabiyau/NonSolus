@@ -1,9 +1,10 @@
 class ActivitiesController < ApplicationController
 
   respond_to :js, :html
+  before_filter :authorize_user!, only: [ :create, :update, :edit, :destroy, :join, :new ]
 
   def index
-    @activities = Activity.filter(filtering_params)
+    @activities = Activity.includes(:creator, :category).filter(filtering_params)
     if request.xhr?
       render @activities
     else
@@ -17,9 +18,6 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = Activity.new(activity_params)
-    unless @current_user
-      redirect_to activities_url, notice: 'You need to be logged in to create an activity!' and return 
-    end
     @activity.creator = @current_user
     if @activity.save
       respond_with(@activity)
@@ -30,6 +28,7 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.includes(:comments).find(params[:id]).decorate
+    @comment = Comment.new
     respond_with(@activity)
   end
 
@@ -51,21 +50,27 @@ class ActivitiesController < ApplicationController
 
   def destroy
     @activity = Activity.find(params[:id])
+    authorize(@activity)
     @activity.destroy
     render partial: 'close_modal_rerender'
   end
 
   def join
     @activity = Activity.find(params[:id])
-    unless @current_user
-      redirect_to @activity, alert: 'You need to be logged in to join an activity!' and return
-    end
+    authorize(@activity)
     @participation = Participation.new(user: current_user, activity: @activity)
     if @participation.save
       redirect_to activities_url, notice: 'You joined the activity'
     else
       redirect_to activities_url, alert: @participation.errors.full_messages.to_sentence
     end
+  end
+
+  def leave
+    @activity = Activity.find(params[:id])
+    authorize(@activity)
+    @activity.users.destroy(current_user)
+    redirect_to activities_url, notice: 'You left activity'
   end
 
   def search
@@ -80,7 +85,7 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:name, :description, :category_id, :urgent)
+    params.require(:activity).permit(:name, :description, :category_id, :urgent, :capacity)
   end
 
   def filtering_params
