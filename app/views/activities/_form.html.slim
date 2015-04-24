@@ -21,11 +21,11 @@
           = f.label 'Urgency', class: 'control-label'
           .radio
             label
-              = f.radio_button :urgent, @activity.urgent ? @activity.urgent : false
+              = f.radio_button :urgent, 'false'
               | Not Urgent
           .radio
             label
-              = f.radio_button :urgent, @activity.urgent ? @activity.urgent : true
+              = f.radio_button :urgent, 'true'
               | Urgent
         .form-group.category
           = f.label :category, class: 'control-label'
